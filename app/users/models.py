@@ -19,3 +19,13 @@ class User(Model):
 
     def __repr__(self):
         return f"User(email={self.email}, user_id={self.user_id})"
+
+    @staticmethod
+    def create_user(email, password=None):
+        qs = User.objects.filter(email=email)
+        if qs.exists():
+            raise Exception("User already exist.")
+        obj = User(email=email)
+        obj.password = password
+        obj.save()
+        return obj

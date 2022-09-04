@@ -2,3 +2,5 @@ fastapi
 uvicorn
 cassandra-driver
 python-dotenv
+requests
+pytest

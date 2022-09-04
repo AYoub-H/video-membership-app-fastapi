@@ -10,7 +10,7 @@ DB_SESSION = None
 
 @main_app.get("/")
 def alive():
-    return {"hello": "world"}
+    return {"message": "hello world"}
 
 
 @main_app.on_event("startup")
