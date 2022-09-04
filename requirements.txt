@@ -5,3 +5,4 @@ python-dotenv
 requests
 pytest
 email-validator
+argon2-cffi
