@@ -1,10 +1,15 @@
 import uuid
 
 from cassandra.cqlengine import columns
-from cassandra.cqlenigine.models import Model
+from cassandra.cqlengine.models import Model
+
+from app.config import get_settings
+
+settings = get_settings()
 
 
 class User(Model):
+    __keyspace__ = settings.keyspace
     user_id = columns.UUID(primary_key=True, default=uuid.uuid1)
     email = columns.Text(primary_key=True)
     password = columns.Text()
