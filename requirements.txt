@@ -4,3 +4,4 @@ cassandra-driver
 python-dotenv
 requests
 pytest
+email-validator
