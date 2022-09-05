@@ -33,11 +33,10 @@ class User(Model):
         verified, _ = security.verify_hash(pw_hash, pw_str)
         return verified
 
-
     @staticmethod
     def create_user(email, password=None):
         qs = User.objects.filter(email=email)
-        if qs.exists():
+        if qs.count() != 0:
             raise Exception("User already exist.")
         valid, message, email = validators.email_validator(email)
         if not valid:
