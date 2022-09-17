@@ -6,3 +6,4 @@ requests
 pytest
 email-validator
 argon2-cffi
+Jinja2
