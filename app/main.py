@@ -26,6 +26,14 @@ def alive(request: Request):
     return templates.TemplateResponse("home.html", context)
 
 
+@main_app.get("/login", response_class=HTMLResponse)
+def login_view(request: Request):
+    context = {
+        "request": request,
+    }
+    return templates.TemplateResponse("auth/login.html", context)
+
+
 @main_app.on_event("startup")
 def on_startup():
     # triggered when fastapi starts
