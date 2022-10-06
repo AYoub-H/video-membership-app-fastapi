@@ -1,6 +1,6 @@
 import pathlib
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from cassandra.cqlengine.management import sync_table
@@ -27,11 +27,32 @@ def alive(request: Request):
 
 
 @main_app.get("/login", response_class=HTMLResponse)
-def login_view(request: Request):
-    context = {
-        "request": request,
-    }
-    return templates.TemplateResponse("auth/login.html", context)
+def login_get_view(request: Request):
+    return templates.TemplateResponse("auth/login.html", {"request": request})
+
+
+@main_app.get("/login", response_class=HTMLResponse)
+def login_post_view(
+        request: Request,
+        email: str = Form(...),
+        password: str = Form(...)
+):
+    return templates.TemplateResponse("auth/login.html", {"request": request})
+
+
+@main_app.get("/register", response_class=HTMLResponse)
+def register_get_view(request: Request):
+    return templates.TemplateResponse("auth/register.html", {"request": request})
+
+
+@main_app.get("/register", response_class=HTMLResponse)
+def register_post_view(
+        request: Request,
+        email: str = Form(...),
+        password: str = Form(...),
+        confirm_password: str = Form(...)
+):
+    return templates.TemplateResponse("auth/register.html", {"request": request})
 
 
 @main_app.on_event("startup")
